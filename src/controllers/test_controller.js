@@ -1,4 +1,3 @@
-
 const testController = {}
 
 testController.healthCheck = (req,res) => {
