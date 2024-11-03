@@ -33,6 +33,12 @@ class BorrowingController {
                 referenceId: borrowEntry._id
             });
 
+            await DB.Borrower.findByIdAndUpdate(
+                borrowerId,
+                { $push: { borrowHistory: borrowEntry._id } },
+                { new: true, useFindAndModify: false }
+            );
+
             return ResponseHelper.success(res, borrowEntry);
         } catch (error) {
             return ResponseHelper.error(res, error.message, 500);
